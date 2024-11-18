@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		120F99D72CEBDFBA00977C2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120F99B72CEBDFB800977C2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 120F99BE2CEBDFB800977C2F;
+			remoteInfo = "hitch-edu";
+		};
+		120F99E12CEBDFBA00977C2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120F99B72CEBDFB800977C2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 120F99BE2CEBDFB800977C2F;
+			remoteInfo = "hitch-edu";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		120F99BF2CEBDFB800977C2F /* hitch-edu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hitch-edu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		120F99D62CEBDFBA00977C2F /* hitch-eduTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "hitch-eduTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		120F99E02CEBDFBA00977C2F /* hitch-eduUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "hitch-eduUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		120F99E82CEBDFBA00977C2F /* Exceptions for "hitch-edu" folder in "hitch-edu" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 120F99BE2CEBDFB800977C2F /* hitch-edu */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		120F99C12CEBDFB800977C2F /* hitch-edu */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				120F99E82CEBDFBA00977C2F /* Exceptions for "hitch-edu" folder in "hitch-edu" target */,
+			);
+			path = "hitch-edu";
+			sourceTree = "<group>";
+		};
+		120F99D92CEBDFBA00977C2F /* hitch-eduTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "hitch-eduTests";
+			sourceTree = "<group>";
+		};
+		120F99E32CEBDFBA00977C2F /* hitch-eduUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "hitch-eduUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		120F99BC2CEBDFB800977C2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120F99D32CEBDFBA00977C2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120F99DD2CEBDFBA00977C2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		120F99B62CEBDFB800977C2F = {
+			isa = PBXGroup;
+			children = (
+				120F99C12CEBDFB800977C2F /* hitch-edu */,
+				120F99D92CEBDFBA00977C2F /* hitch-eduTests */,
+				120F99E32CEBDFBA00977C2F /* hitch-eduUITests */,
+				120F99C02CEBDFB800977C2F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		120F99C02CEBDFB800977C2F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				120F99BF2CEBDFB800977C2F /* hitch-edu.app */,
+				120F99D62CEBDFBA00977C2F /* hitch-eduTests.xctest */,
+				120F99E02CEBDFBA00977C2F /* hitch-eduUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		120F99BE2CEBDFB800977C2F /* hitch-edu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 120F99E92CEBDFBA00977C2F /* Build configuration list for PBXNativeTarget "hitch-edu" */;
+			buildPhases = (
+				120F99BB2CEBDFB800977C2F /* Sources */,
+				120F99BC2CEBDFB800977C2F /* Frameworks */,
+				120F99BD2CEBDFB800977C2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				120F99C12CEBDFB800977C2F /* hitch-edu */,
+			);
+			name = "hitch-edu";
+			packageProductDependencies = (
+			);
+			productName = "hitch-edu";
+			productReference = 120F99BF2CEBDFB800977C2F /* hitch-edu.app */;
+			productType = "com.apple.product-type.application";
+		};
+		120F99D52CEBDFBA00977C2F /* hitch-eduTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 120F99EE2CEBDFBA00977C2F /* Build configuration list for PBXNativeTarget "hitch-eduTests" */;
+			buildPhases = (
+				120F99D22CEBDFBA00977C2F /* Sources */,
+				120F99D32CEBDFBA00977C2F /* Frameworks */,
+				120F99D42CEBDFBA00977C2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				120F99D82CEBDFBA00977C2F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				120F99D92CEBDFBA00977C2F /* hitch-eduTests */,
+			);
+			name = "hitch-eduTests";
+			packageProductDependencies = (
+			);
+			productName = "hitch-eduTests";
+			productReference = 120F99D62CEBDFBA00977C2F /* hitch-eduTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		120F99DF2CEBDFBA00977C2F /* hitch-eduUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 120F99F12CEBDFBA00977C2F /* Build configuration list for PBXNativeTarget "hitch-eduUITests" */;
+			buildPhases = (
+				120F99DC2CEBDFBA00977C2F /* Sources */,
+				120F99DD2CEBDFBA00977C2F /* Frameworks */,
+				120F99DE2CEBDFBA00977C2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				120F99E22CEBDFBA00977C2F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				120F99E32CEBDFBA00977C2F /* hitch-eduUITests */,
+			);
+			name = "hitch-eduUITests";
+			packageProductDependencies = (
+			);
+			productName = "hitch-eduUITests";
+			productReference = 120F99E02CEBDFBA00977C2F /* hitch-eduUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		120F99B72CEBDFB800977C2F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1610;
+				LastUpgradeCheck = 1610;
+				TargetAttributes = {
+					120F99BE2CEBDFB800977C2F = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					120F99D52CEBDFBA00977C2F = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 120F99BE2CEBDFB800977C2F;
+					};
+					120F99DF2CEBDFBA00977C2F = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 120F99BE2CEBDFB800977C2F;
+					};
+				};
+			};
+			buildConfigurationList = 120F99BA2CEBDFB800977C2F /* Build configuration list for PBXProject "hitch-edu" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 120F99B62CEBDFB800977C2F;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 120F99C02CEBDFB800977C2F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				120F99BE2CEBDFB800977C2F /* hitch-edu */,
+				120F99D52CEBDFBA00977C2F /* hitch-eduTests */,
+				120F99DF2CEBDFBA00977C2F /* hitch-eduUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		120F99BD2CEBDFB800977C2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120F99D42CEBDFBA00977C2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120F99DE2CEBDFBA00977C2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		120F99BB2CEBDFB800977C2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120F99D22CEBDFBA00977C2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		120F99DC2CEBDFBA00977C2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		120F99D82CEBDFBA00977C2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 120F99BE2CEBDFB800977C2F /* hitch-edu */;
+			targetProxy = 120F99D72CEBDFBA00977C2F /* PBXContainerItemProxy */;
+		};
+		120F99E22CEBDFBA00977C2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 120F99BE2CEBDFB800977C2F /* hitch-edu */;
+			targetProxy = 120F99E12CEBDFBA00977C2F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		120F99EA2CEBDFBA00977C2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "hitch-edu/hitch_edu.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"hitch-edu/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "hitch-edu/Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.g-umoren.hitch-edu";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		120F99EB2CEBDFBA00977C2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "hitch-edu/hitch_edu.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"hitch-edu/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "hitch-edu/Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.g-umoren.hitch-edu";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		120F99EC2CEBDFBA00977C2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		120F99ED2CEBDFBA00977C2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		120F99EF2CEBDFBA00977C2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.g-umoren.hitch-eduTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/hitch-edu.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/hitch-edu";
+			};
+			name = Debug;
+		};
+		120F99F02CEBDFBA00977C2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.g-umoren.hitch-eduTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/hitch-edu.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/hitch-edu";
+			};
+			name = Release;
+		};
+		120F99F22CEBDFBA00977C2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.g-umoren.hitch-eduUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "hitch-edu";
+			};
+			name = Debug;
+		};
+		120F99F32CEBDFBA00977C2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.g-umoren.hitch-eduUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "hitch-edu";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		120F99BA2CEBDFB800977C2F /* Build configuration list for PBXProject "hitch-edu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120F99EC2CEBDFBA00977C2F /* Debug */,
+				120F99ED2CEBDFBA00977C2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		120F99E92CEBDFBA00977C2F /* Build configuration list for PBXNativeTarget "hitch-edu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120F99EA2CEBDFBA00977C2F /* Debug */,
+				120F99EB2CEBDFBA00977C2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		120F99EE2CEBDFBA00977C2F /* Build configuration list for PBXNativeTarget "hitch-eduTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120F99EF2CEBDFBA00977C2F /* Debug */,
+				120F99F02CEBDFBA00977C2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		120F99F12CEBDFBA00977C2F /* Build configuration list for PBXNativeTarget "hitch-eduUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120F99F22CEBDFBA00977C2F /* Debug */,
+				120F99F32CEBDFBA00977C2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 120F99B72CEBDFB800977C2F /* Project object */;
+}
