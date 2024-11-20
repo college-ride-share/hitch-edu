@@ -6,81 +6,48 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    @Environment(\.colorScheme) var colorScheme
+    @State private var isVisible = false // For animation
+    @State private var navigateToOnBoarding = false // Navigation state
+    
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
+        NavigationStack {
+            ZStack {
+                Color.appBackground // Set the background color
+                    .ignoresSafeArea()
+                
+                VStack {
+                    Text("CarShareU")
+                        .font(.geistExtraBold(size: 32))
+                        .padding(15)
+                        .background(Color.appPrimary)
+                        .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
+                        .cornerRadius(15)
+                        .opacity(isVisible ? 1 : 0) // Fade effect
+                        .offset(y: isVisible ? 0 : 50) // Slide in from the bottom
+                        .animation(.easeOut(duration: 1.0), value: isVisible) // Apply animation
                 }
-                .onDelete(perform: deleteItems)
+                .padding()
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+            .onAppear {
+                // Trigger the animation
+                isVisible = true
+                
+                // Schedule navigation 10 seconds after animation
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    navigateToOnBoarding = true
                 }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
             }
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            .navigationDestination(isPresented: $navigateToOnBoarding) {
+                OnBoardingView() // Navigate to OnBoardingView
+                    .navigationBarBackButtonHidden(true);
             }
         }
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
 #Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    ContentView()
 }
