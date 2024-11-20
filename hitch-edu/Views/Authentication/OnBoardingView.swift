@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OnBoardingView: View {
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var navigationManager: NavigationManager // Add NavigationManager as an EnvironmentObject
+
     
     @State private var isVisible = false
     @State private var modalVisible: Bool = false
@@ -25,6 +27,7 @@ struct OnBoardingView: View {
             VStack(alignment: .leading) {
                 VStack(alignment: .leading, spacing: 50) {
                     VStack(alignment: .leading, spacing: 5) {
+                        
                         Text("Welcome to CarShareU!")
                             .font(.geistBlack(size: 25))
                             .fontWeight(.bold)
@@ -73,9 +76,12 @@ struct OnBoardingView: View {
             
         }
         .sheet(isPresented: $modalVisible) {
-            NavigationStack {
-                LoginView()
-            }
+            AuthenticationView(
+                           authService: AuthService(),
+                           navigationManager: navigationManager
+                       )
+                       .environmentObject(navigationManager)
+            
         }
     }
 }

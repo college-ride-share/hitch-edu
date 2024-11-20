@@ -10,7 +10,13 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var isVisible = false // For animation
-    @State private var navigateToOnBoarding = false // Navigation state
+    
+//        init() {
+//            SessionManager.shared.clearSession()
+//        }
+    
+    
+    @EnvironmentObject var navigationManager: NavigationManager // Injected NavigationManager
     
     var body: some View {
         NavigationStack {
@@ -37,17 +43,43 @@ struct ContentView: View {
                 
                 // Schedule navigation 10 seconds after animation
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    navigateToOnBoarding = true
+                    handleNavigation()
                 }
             }
-            .navigationDestination(isPresented: $navigateToOnBoarding) {
-                OnBoardingView() // Navigate to OnBoardingView
-                    .navigationBarBackButtonHidden(true);
+            .navigationDestination(isPresented: $navigationManager.navigateToOnBoarding) {
+                OnBoardingView()
+                    .navigationBarBackButtonHidden(true)
             }
+            .sheet(isPresented: $navigationManager.navigateToAuthentication) {
+                AuthenticationView(
+                       authService: AuthService(),
+                       navigationManager: navigationManager
+                   )
+                    .navigationBarBackButtonHidden(true)
+            }
+            .navigationDestination(isPresented: $navigationManager.navigateToHome) {
+                HomeView()
+                    .navigationBarBackButtonHidden(true)
+            }
+        }
+    }
+    
+    private func handleNavigation() {
+        print("Determining navigation step...")
+        print("Is onboarding completed: \(SessionManager.shared.isOnboardCompleted)")
+        print("Is token valid: \(SessionManager.shared.isTokenValid())")
+        print("Current user: \(String(describing: SessionManager.shared.currentUser))")
+        
+        if !SessionManager.shared.isOnboardCompleted {
+            navigationManager.navigateToOnBoarding = true
+        } else if let _ = SessionManager.shared.currentUser, SessionManager.shared.isTokenValid() {
+            navigationManager.navigateToHome = true
+        } else {
+            navigationManager.navigateToAuthentication = true
         }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView().environmentObject(NavigationManager())
 }
