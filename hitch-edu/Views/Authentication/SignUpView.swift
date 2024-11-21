@@ -21,11 +21,13 @@ struct SignUpView: View {
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.backward")
-                        .foregroundColor(.gray)
+                if !(SessionManager.shared.isOnboardCompleted && SessionManager.shared.currentUser != nil) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(.gray)
+                    }
                 }
             }
             

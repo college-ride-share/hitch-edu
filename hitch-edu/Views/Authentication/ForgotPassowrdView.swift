@@ -58,11 +58,13 @@ struct ForgotPassowrdView: View {
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.backward")
-                        .foregroundColor(.gray)
+                if !(SessionManager.shared.isOnboardCompleted && SessionManager.shared.currentUser != nil) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(.gray)
+                    }
                 }
             }
             
@@ -78,7 +80,7 @@ struct ForgotPassowrdView: View {
 }
 
 #Preview {
-    @State var email: String = ""
+    @Previewable @State var email: String = ""
     ForgotPassowrdView(
         email: $email,
         authService: AuthService(),

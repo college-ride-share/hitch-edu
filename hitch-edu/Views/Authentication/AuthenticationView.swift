@@ -130,11 +130,13 @@ struct AuthenticationView: View {
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        dismiss()
-                    }) {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.gray)
+                    if !(SessionManager.shared.isOnboardCompleted && SessionManager.shared.currentUser != nil) {
+                        Button(action: {
+                            dismiss()
+                        }) {
+                            Image(systemName: "chevron.backward")
+                                .foregroundColor(.gray)
+                        }
                     }
                 }
                 
