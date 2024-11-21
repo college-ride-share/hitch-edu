@@ -43,7 +43,7 @@ class AuthenticationViewModel: ObservableObject {
                 
                 
                 // Simulate delay
-                DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     self.isLoading = false // Stop loading after the delay
                     self.isEmailRegistered = response.registered
                     print("Email registered: \(response.registered)")
@@ -69,7 +69,7 @@ class AuthenticationViewModel: ObservableObject {
                 SessionManager.shared.saveLoginData(response)
                 DispatchQueue.main.async {
                     self.isLoading = false
-                    self.navigationManager.navigateToHome = true // Navigate to Home
+                    self.navigationManager.navigateToHome = true
                 }
             })
             .store(in: &cancellables)

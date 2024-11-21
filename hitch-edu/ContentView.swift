@@ -66,10 +66,10 @@ struct ContentView: View {
     }
     
     private func handleNavigation() {
-        print("Determining navigation step...")
-        print("Is onboarding completed: \(SessionManager.shared.isOnboardCompleted)")
-        print("Is token valid: \(SessionManager.shared.isTokenValid())")
-        print("Current user: \(String(describing: SessionManager.shared.currentUser))")
+//        print("Determining navigation step...")
+//        print("Is onboarding completed: \(SessionManager.shared.isOnboardCompleted)")
+//        print("Is token valid: \(SessionManager.shared.isTokenValid())")
+//        print("Current user: \(String(describing: SessionManager.shared.currentUser))")
         
         if !SessionManager.shared.isOnboardCompleted {
             navigationManager.navigateToOnBoarding = true

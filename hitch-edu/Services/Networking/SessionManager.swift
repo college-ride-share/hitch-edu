@@ -37,9 +37,9 @@ class SessionManager {
     var currentUser: User? {
         get {
             if let data = UserDefaults.standard.data(forKey: userKey) {
-                print("Fetching user from UserDefaults...")
+//                print("Fetching user from UserDefaults...")
                 if let user = try? JSONDecoder().decode(User.self, from: data) {
-                    print("User successfully fetched: \(user)")
+//                    print("User successfully fetched: \(user)")
                     return user
                 } else {
                     print("Failed to decode user.")
@@ -100,21 +100,6 @@ class SessionManager {
 
         return false
     }
-
-    func determineNextStep(completion: @escaping (NavigationState) -> Void) {
-        if !isOnboardCompleted {
-            completion(.onboard)
-        } else if let _ = KeychainHelper.shared.retrieve(for: tokenKey) {
-            if isTokenValid() {
-                completion(.home)
-            } else {
-                logout()
-                completion(.login)
-            }
-        } else {
-            completion(.onboard)
-        }
-    }
     
     func saveLoginData(_ loginResponse: LoginResponse) {
         print("Saving login data to SessionManager")
@@ -153,10 +138,4 @@ class SessionManager {
         KeychainHelper.shared.delete(for: refreshTokenKey)
         currentUser = nil
     }
-}
-
-enum NavigationState {
-    case onboard
-    case login
-    case home
 }
