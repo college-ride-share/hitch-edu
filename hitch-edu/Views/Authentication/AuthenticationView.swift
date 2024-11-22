@@ -17,7 +17,7 @@ struct AuthenticationView: View {
     @State private var email: String = ""
     @State private var navigateToLogin: Bool = false
     @State private var navigateToSignUp: Bool = false
-
+    
     init(authService: AuthService, navigationManager: NavigationManager) {
         _viewModel = StateObject(wrappedValue: AuthenticationViewModel(authService: authService, navigationManager: navigationManager))
     }
@@ -119,10 +119,17 @@ struct AuthenticationView: View {
                 }
             }
             .navigationDestination(isPresented: $navigateToLogin) {
-                LoginView(email: $email, authService: AuthService(), navigationManager: viewModel.navigationManager)
+                LoginView(
+                    email: $email,
+                    authService: AuthService(),
+                    navigationManager: viewModel.navigationManager
+                )
             }
             .navigationDestination(isPresented: $navigateToSignUp) {
-                SignUpView(email: $email)
+                SignUpView(  email: $email,
+                             authService: AuthService(),
+                             navigationManager: viewModel.navigationManager
+                )
             }
             .padding()
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
