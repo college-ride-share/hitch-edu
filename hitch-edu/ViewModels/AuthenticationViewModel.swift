@@ -74,4 +74,28 @@ class AuthenticationViewModel: ObservableObject {
             })
             .store(in: &cancellables)
     }
+    
+    // Sign Up
+    func signup(firstname: String, lastname: String, dob:Date?, email: String, password: String) {
+        isLoading = true
+        
+        authService.signup(firstname: firstname, lastname: lastname, dob: dob, email: email, password: password)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    self.isLoading = false
+                    self.errorMessage = "Signup failed: \(error.localizedDescription)"
+                case .finished:
+                    break
+                }
+            }, receiveValue: { response in
+                SessionManager.shared.saveLoginData(response)
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.navigationManager.navigateToHome = true
+                }
+            })
+            .store(in: &cancellables)
+        
+    }
 }
