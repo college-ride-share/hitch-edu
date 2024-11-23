@@ -16,7 +16,7 @@ struct SignUpView: View {
     enum Field {
         case firstName, lastName, birthDate, email, password
     }
-
+    
     @FocusState private var infocus: Field?
     
     init(email: Binding<String>, authService: AuthService, navigationManager: NavigationManager) {
@@ -47,8 +47,8 @@ struct SignUpView: View {
             password.range(of: "[^A-Za-z\\d]", options: .regularExpression) != nil
         ].contains(false)
     }
-
-
+    
+    
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -161,7 +161,7 @@ struct SignUpView: View {
                             .onSubmit {
                                 // Final action when "Done" is pressed
                             }
-                            
+                        
                         
                         PasswordValidatorView(password: $password)
                     }
@@ -173,12 +173,13 @@ struct SignUpView: View {
                     .padding(.horizontal)
                 }
                 .padding()
-                .background(Color.clear)
-                    .onTapGesture {
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    }
+                
             }
             
+        }
+        .background(Color.clear)
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
