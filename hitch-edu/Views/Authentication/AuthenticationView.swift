@@ -108,6 +108,10 @@ struct AuthenticationView: View {
                     }
                     
                 }
+                .background(Color.clear)
+                .onTapGesture {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
             }
             .onChange(of: viewModel.isEmailRegistered) { isRegistered in
                 if let isRegistered = isRegistered {
@@ -156,10 +160,7 @@ struct AuthenticationView: View {
                 }
             }
         }
-        .background(Color.clear)
-        .onTapGesture {
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        }
+       
     }
 }
 

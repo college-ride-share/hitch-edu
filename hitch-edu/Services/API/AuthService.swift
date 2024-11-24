@@ -92,6 +92,72 @@ class AuthService: APIService {
             })
             .eraseToAnyPublisher()
     }
+    
+    // Request Code
+    func requestCode(email: String) -> AnyPublisher<CodeRequestResponse, APIError> {
+        let endpoint = "\(baseURL)/request-reset"
+        let requestBody = ["email": email] as [String : Any]
+        
+        guard let bodyData = try? JSONSerialization.data(withJSONObject: requestBody, options: .prettyPrinted) else {
+            return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
+        }
+        
+        return performRequest(endpoint, method: .POST, body: bodyData)
+            .handleEvents(receiveSubscription: {_ in
+                print("Starting code request to \(endpoint)")
+            }, receiveOutput: {
+                response in print("Received code response: \(response)")
+            }, receiveCompletion: {
+                completion in if case let .failure(error) = completion {
+                    print("Error getting code: \(error)")
+                }
+            })
+            .eraseToAnyPublisher()
+    }
+    
+    // Verify Code
+    func verfyCode(email: String, code: String) -> AnyPublisher<CodeVerifyResponse, APIError> {
+        let endpoint = "\(baseURL)/verify-reset"
+        let requestBody = ["email": email, "code": code] as [String : Any]
+        
+        guard let bodyData = try? JSONSerialization.data(withJSONObject: requestBody, options: .prettyPrinted) else {
+            return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
+        }
+        
+        return performRequest(endpoint, method: .POST, body: bodyData)
+            .handleEvents(receiveSubscription: {_ in
+                print("Starting code verification to \(endpoint)")
+            }, receiveOutput: {
+                response in print("Received response: \(response)")
+            }, receiveCompletion: {
+                completion in if case let .failure(error) = completion {
+                    print("Error verifying code: \(error)")
+                }
+            })
+            .eraseToAnyPublisher()
+    }
+    
+    // Reset Passoword
+    func resetPassword(email: String, password: String, confirmPassword:String) -> AnyPublisher<ResetPasswordResponse, APIError> {
+     let endpoint = "\(baseURL)/reset-password"
+        let requestBody = ["email": email, "new_password": password, "confirm_password": confirmPassword] as [String : Any]
+        
+        guard let bodyData = try? JSONSerialization.data(withJSONObject: requestBody, options: .prettyPrinted) else {
+            return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
+        }
+        
+        return performRequest(endpoint, method: .POST, body: bodyData)
+            .handleEvents(receiveSubscription: {_ in
+                print("Starting password reset to \(endpoint)")
+            }, receiveOutput: {
+                response in print("Received response: \(response)")
+            }, receiveCompletion: {
+                completion in if case let .failure(error) = completion {
+                    print("Error resetting password: \(error)")
+                }
+            })
+            .eraseToAnyPublisher()
+    }
 }
 
 
@@ -118,7 +184,17 @@ struct CheckEmailResponse: Decodable {
     let registered: Bool;
 }
 
-// Response Model for signup
-struct SignupResponse: Decodable {
-    
+// Response Model for request code
+struct CodeRequestResponse: Decodable {
+    let message: String
+}
+
+// Response Model for verify code
+struct CodeVerifyResponse: Decodable {
+    let valid: Bool
+}
+
+// Respose Model for forgot password
+struct ResetPasswordResponse: Decodable {
+    let reset: Bool
 }

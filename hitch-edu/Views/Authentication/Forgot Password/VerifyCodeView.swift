@@ -1,13 +1,13 @@
 //
-//  ForgotPassowrdView.swift
+//  VerifyCodeView.swift
 //  hitch-edu
 //
-//  Created by Godson Umoren on 11/19/24.
+//  Created by Godson Umoren on 11/23/24.
 //
 
 import SwiftUI
 
-struct ForgotPassowrdView: View {
+struct VerifyCodeView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @StateObject private var viewModel: AuthenticationViewModel
@@ -18,9 +18,11 @@ struct ForgotPassowrdView: View {
         self._email = email
     }
     
+    @State private var code: String = ""
+    @State private var navigateToCreatePassword: Bool = false
     
     private var buttonDisabled: Bool {
-        email.isEmpty
+        code.isEmpty
     }
     
     var body: some View {
@@ -29,28 +31,48 @@ struct ForgotPassowrdView: View {
                 VStack(spacing:40) {
                     Spacer().frame(height: 1)
                     
-                    // Email Input
+                    // Header
+                    VStack(alignment:.center, spacing: 20) {
+                        Image(systemName: "lock")
+                            .resizable()
+                            .scaledToFit()
+                            .containerRelativeFrame(.horizontal) { size, axis in
+                                    size * 0.15
+                            }
+                        
+                        Text("Reset Password")
+                            .font(.geistSemiBold(size: 30))
+                    }
+                    
+                    // Code Entry
                     VStack(alignment: .leading) {
-                        Text("Enter Your Email")
+                        Text("Verfication Code")
                             .font(.headline)
                             .foregroundColor(.secondary)
-                        TextField("Email", text: $email)
+                        TextField("Code", text: $code)
                             .padding()
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color.border, lineWidth: 1)
                             )
                             .autocapitalization(.none)
-                            .keyboardType(.emailAddress)
-                            .textContentType(.emailAddress)
+                            .textContentType(.oneTimeCode)
+                        
+                        Text("Enter the code sent to your email.")
+                            .font(.geistMonoRegular(size: 12))
+                            .foregroundColor(.secondary)
                     }
                     .padding(.horizontal)
                     
                     // Authentication Button
                     LoadingButton(title: "Continue", action: {
-                        print("Forgot Password Tapped")
+                        viewModel.verfyCode(email: email, code: code, onCodeVerified: {
+                            navigateToCreatePassword = true
+                        })
                     }, loading: viewModel.isLoading, buttonDisabled: buttonDisabled).padding(.horizontal)
                 }
+                .padding( )
+
             }
         }
         .background(Color.clear)
@@ -74,18 +96,27 @@ struct ForgotPassowrdView: View {
             
             ToolbarItem(placement: .principal) {
                 VStack {
-                    Text("Forgot Password")
+                    Text("Verify Code")
                         .font(.geistMonoMedium(size: 15))
                         .foregroundColor(Color.appTextPrimary)
                 }
             }
+        }
+        .navigationDestination(isPresented: $navigateToCreatePassword) {
+            NewPasswordView(
+                email: $email,
+//                code: $code,
+                authService: viewModel.authService,
+                navigationManager: viewModel.navigationManager
+            )
         }
     }
 }
 
 #Preview {
     @Previewable @State var email: String = ""
-    ForgotPassowrdView(
+   
+    VerifyCodeView(
         email: $email,
         authService: AuthService(),
         navigationManager: NavigationManager()
