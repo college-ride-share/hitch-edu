@@ -9,6 +9,7 @@ import Foundation
 
 struct Constants {
     struct API {
-        static let baseURL = "http://172.20.251.195:8000"
+       // static let baseURL = "http://localhost:8000"
+        static let baseURL = "https://d1f3-102-90-102-117.ngrok-free.app"
     }
 }

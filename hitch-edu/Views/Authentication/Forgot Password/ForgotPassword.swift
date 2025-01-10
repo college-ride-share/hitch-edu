@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ForgotPassowrdView: View {
+struct ForgotPasswordView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @StateObject private var viewModel: AuthenticationViewModel
@@ -48,6 +48,17 @@ struct ForgotPassowrdView: View {
                     }
                     .padding(.horizontal)
                     
+                    if let errorMessage = viewModel.errorMessage {
+                        Text(
+                            errorMessage == "Request Code Failed: Server error with status code: 400" ?
+                            "We couldn’t process your request. Please check the email address you entered and try again." :
+                            errorMessage
+                        )
+                        .foregroundColor(.appError)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                    }
+                    
                     // Authentication Button
                     LoadingButton(title: "Continue", action: {
                         viewModel.requestCode(email: email, onNavigateToVerify: {
@@ -66,7 +77,7 @@ struct ForgotPassowrdView: View {
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                if !(SessionManager.shared.isOnboardCompleted && SessionManager.shared.currentUser != nil) {
+               
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
@@ -74,7 +85,7 @@ struct ForgotPassowrdView: View {
                             .foregroundColor(.gray)
                     }
                 }
-            }
+            
             
             ToolbarItem(placement: .principal) {
                 VStack {
@@ -92,7 +103,7 @@ struct ForgotPassowrdView: View {
 
 #Preview {
     @Previewable @State var email: String = ""
-    ForgotPassowrdView(
+    ForgotPasswordView(
         email: $email,
         authService: AuthService(),
         navigationManager: NavigationManager()

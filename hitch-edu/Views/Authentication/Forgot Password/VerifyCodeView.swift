@@ -64,6 +64,17 @@ struct VerifyCodeView: View {
                     }
                     .padding(.horizontal)
                     
+                    if let errorMessage = viewModel.errorMessage {
+                        Text(
+                            errorMessage == "Verification failed: Server error with status code: 422" ?
+                            "We couldn’t process your request. Please check the code you entered and try again." :
+                            errorMessage
+                        )
+                        .foregroundColor(.appError)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                    }
+                    
                     // Authentication Button
                     LoadingButton(title: "Continue", action: {
                         viewModel.verfyCode(email: email, code: code, onCodeVerified: {
@@ -84,7 +95,7 @@ struct VerifyCodeView: View {
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                if !(SessionManager.shared.isOnboardCompleted && SessionManager.shared.currentUser != nil) {
+               
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
@@ -92,7 +103,7 @@ struct VerifyCodeView: View {
                             .foregroundColor(.gray)
                     }
                 }
-            }
+            
             
             ToolbarItem(placement: .principal) {
                 VStack {

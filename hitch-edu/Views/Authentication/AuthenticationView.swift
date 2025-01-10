@@ -31,12 +31,14 @@ struct AuthenticationView: View {
         email.isEmpty || !isEmailValid
     }
     
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 40) {
                     Spacer()
                         .frame(height: 1)
+                    
                     
                     // Email Input
                     VStack(alignment: .leading) {
@@ -92,6 +94,7 @@ struct AuthenticationView: View {
                         IconButton(
                             action: {
                                 // TODO: Add Apple button action
+                                print("Apple Login")
                             },
                             label: "Continue with Apple",
                             icon: .system(name: "applelogo")
@@ -101,6 +104,7 @@ struct AuthenticationView: View {
                         IconButton(
                             action: {
                                 // TODO: Add Google button action
+                                print("Google Login")
                             },
                             label: "Continue with Google",
                             icon: .custom(imageName: colorScheme == .dark ? "google-dark" : "google-light")
@@ -140,8 +144,9 @@ struct AuthenticationView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
+                
                 ToolbarItem(placement: .navigationBarLeading) {
-                    if !(SessionManager.shared.isOnboardCompleted && SessionManager.shared.currentUser != nil) {
+                    if (!SessionManager.shared.isOnboardCompleted && SessionManager.shared.currentUser != nil) {
                         Button(action: {
                             dismiss()
                         }) {

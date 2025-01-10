@@ -21,6 +21,7 @@ class SessionManager {
     private var isRefreshing = false
     private var refreshQueue = [(Result<String, Error>) -> Void]()
 
+    // Function to check if user has completed on-boarding process
     var isOnboardCompleted: Bool {
         get {
             guard let onboardStatus = KeychainHelper.shared.retrieve(for: onboardKey) else {

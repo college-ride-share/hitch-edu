@@ -30,7 +30,7 @@ class AuthService: APIService {
                 print("Received response: \(response)")
             }, receiveCompletion: { completion in
                 if case let .failure(error) = completion {
-                    print("Request failed with error: \(error)")
+                    print("Request failed with error: \(error.localizedDescription)")
                 }
             })
             .eraseToAnyPublisher()
@@ -55,7 +55,7 @@ class AuthService: APIService {
                 print("Login response received: \(response)")
             }, receiveCompletion: { completion in
                 if case let .failure(error) = completion {
-                    print("Login failed with error: \(error)")
+                    print("Login failed with error: \(error.localizedDescription)")
                 }
             })
             .eraseToAnyPublisher()
@@ -87,7 +87,7 @@ class AuthService: APIService {
                 response in print("Received signup response: \(response)")
             }, receiveCompletion: {
                 completion in if case let .failure(error) = completion {
-                    print("Error signing up: \(error)")
+                    print("Error signing up: \(error.localizedDescription)")
                 }
             })
             .eraseToAnyPublisher()
@@ -109,7 +109,7 @@ class AuthService: APIService {
                 response in print("Received code response: \(response)")
             }, receiveCompletion: {
                 completion in if case let .failure(error) = completion {
-                    print("Error getting code: \(error)")
+                    print("Error getting code: \(error.localizedDescription)")
                 }
             })
             .eraseToAnyPublisher()
@@ -131,7 +131,7 @@ class AuthService: APIService {
                 response in print("Received response: \(response)")
             }, receiveCompletion: {
                 completion in if case let .failure(error) = completion {
-                    print("Error verifying code: \(error)")
+                    print("Error verifying code: \(error.localizedDescription)")
                 }
             })
             .eraseToAnyPublisher()
@@ -153,7 +153,7 @@ class AuthService: APIService {
                 response in print("Received response: \(response)")
             }, receiveCompletion: {
                 completion in if case let .failure(error) = completion {
-                    print("Error resetting password: \(error)")
+                    print("Error resetting password: \(error.localizedDescription)")
                 }
             })
             .eraseToAnyPublisher()

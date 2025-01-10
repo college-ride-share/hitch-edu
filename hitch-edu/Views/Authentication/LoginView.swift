@@ -49,7 +49,7 @@ struct LoginView: View {
                         Text("Enter Your Password")
                             .font(.headline)
                             .foregroundColor(.secondary)
-                        SecureField("Passowrd", text: $password)
+                        SecureField("Password", text: $password)
                             .padding()
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
@@ -58,6 +58,19 @@ struct LoginView: View {
                             .textContentType(.newPassword)
                     }
                     .padding(.horizontal)
+                    
+                    // TODO: Add error message here
+                    if let errorMessage = viewModel.errorMessage {
+                        Text(
+                            errorMessage == "Login failed: Server error with status code: 401" ?
+                            "We couldn’t sign you in. Please check your email and password and try again." :
+                            errorMessage
+                        )
+                        .foregroundColor(.appError)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                    }
+
                     
                     // Authentication Button
                     LoadingButton(title: "Continue", action: {
@@ -88,14 +101,14 @@ struct LoginView: View {
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                if !(SessionManager.shared.isOnboardCompleted && SessionManager.shared.currentUser != nil) {
+               //  if !(SessionManager.shared.isOnboardCompleted && SessionManager.shared.currentUser != nil) {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         Image(systemName: "chevron.backward")
                             .foregroundColor(.gray)
                     }
-                }
+                // }
             }
             
             ToolbarItem(placement: .principal) {
@@ -107,7 +120,7 @@ struct LoginView: View {
             }
         }
         .navigationDestination(isPresented: $navigateToForgotPassword) {
-                   ForgotPassowrdView(
+                   ForgotPasswordView(
                        email: $email,
                        authService: viewModel.authService,
                        navigationManager: viewModel.navigationManager
