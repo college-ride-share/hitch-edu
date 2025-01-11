@@ -59,7 +59,7 @@ struct ContentView: View {
                     .interactiveDismissDisabled(!navigationManager.navigateToHome)
             }
             .navigationDestination(isPresented: $navigationManager.navigateToHome) {
-                HomeView()
+                AppView()
                     .navigationBarBackButtonHidden(true)
             }
         }
