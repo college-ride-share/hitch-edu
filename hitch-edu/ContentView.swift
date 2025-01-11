@@ -6,22 +6,21 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var isVisible = false // For animation
     
-//        init() {
-//            SessionManager.shared.clearSession()
-//        }
+    // Keep a reference to store Combine subscriptions
+    @State private var cancellables = Set<AnyCancellable>()
     
-    
-    @EnvironmentObject var navigationManager: NavigationManager // Injected NavigationManager
+    @EnvironmentObject var navigationManager: NavigationManager
     
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.appBackground // Set the background color
+                Color.appBackground
                     .ignoresSafeArea()
                 
                 VStack {
@@ -33,15 +32,15 @@ struct ContentView: View {
                         .cornerRadius(15)
                         .opacity(isVisible ? 1 : 0) // Fade effect
                         .offset(y: isVisible ? 0 : 50) // Slide in from the bottom
-                        .animation(.easeOut(duration: 1.0), value: isVisible) // Apply animation
+                        .animation(.easeOut(duration: 1.0), value: isVisible)
                 }
                 .padding()
             }
             .onAppear {
-                // Trigger the animation
+                // Trigger the splash animation
                 isVisible = true
                 
-                // Schedule navigation 10 seconds after animation
+                // After some delay, decide where to go
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     handleNavigation()
                 }
@@ -52,11 +51,11 @@ struct ContentView: View {
             }
             .sheet(isPresented: $navigationManager.navigateToAuthentication) {
                 AuthenticationView(
-                       authService: AuthService(),
-                       navigationManager: navigationManager
-                   )
-                    .navigationBarBackButtonHidden(true)
-                    .interactiveDismissDisabled(!navigationManager.navigateToHome)
+                    authService: AuthService(),
+                    navigationManager: navigationManager
+                )
+                .navigationBarBackButtonHidden(true)
+                .interactiveDismissDisabled(!navigationManager.navigateToHome)
             }
             .navigationDestination(isPresented: $navigationManager.navigateToHome) {
                 AppView()
@@ -66,17 +65,40 @@ struct ContentView: View {
     }
     
     private func handleNavigation() {
-//        print("Determining navigation step...")
-//        print("Is onboarding completed: \(SessionManager.shared.isOnboardCompleted)")
-//        print("Is token valid: \(SessionManager.shared.isTokenValid())")
-//        print("Current user: \(String(describing: SessionManager.shared.currentUser))")
-        
+        // 1) If user hasn't completed onboarding, go there first
         if !SessionManager.shared.isOnboardCompleted {
             navigationManager.navigateToOnBoarding = true
-        } else if let _ = SessionManager.shared.currentUser, SessionManager.shared.isTokenValid() {
+            return
+        }
+        
+        // 2) Check if there's a saved user
+        guard let _ = SessionManager.shared.currentUser else {
+            // No user => must sign in
+            navigationManager.navigateToAuthentication = true
+            return
+        }
+        
+        // 3) If we do have a user, see if the token is still valid
+        if SessionManager.shared.isTokenValid() {
+            // Access token valid => go straight home
             navigationManager.navigateToHome = true
         } else {
-            navigationManager.navigateToAuthentication = true
+            // Access token is expired => attempt a refresh
+            SessionManager.shared.refreshTokens()
+                .receive(on: DispatchQueue.main)
+                .sink { completion in
+                    switch completion {
+                    case .failure:
+                        // If refresh fails => we assume refresh token also invalid
+                        navigationManager.navigateToAuthentication = true
+                    case .finished:
+                        break
+                    }
+                } receiveValue: { _ in
+                    // If refresh succeeds => navigate to home
+                    navigationManager.navigateToHome = true
+                }
+                .store(in: &cancellables)
         }
     }
 }

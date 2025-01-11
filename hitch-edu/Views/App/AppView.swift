@@ -34,7 +34,9 @@ struct AppView: View {
                 
                 // Profile
                 Tab("Profile", systemImage: "person.crop.circle.fill") {
-                    ProfileView()
+                    NavigationStack {
+                        ProfileView()
+                    }
                 }
             }
 

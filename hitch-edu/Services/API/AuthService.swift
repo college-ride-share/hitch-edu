@@ -158,6 +158,36 @@ class AuthService: APIService {
             })
             .eraseToAnyPublisher()
     }
+    
+    // Refreshes access & refresh tokens using the stored refresh token
+        func refreshTokens() -> AnyPublisher<LoginResponse, APIError> {
+            let endpoint = "\(baseURL)/refresh"
+            
+            // Build request body for refresh
+            guard let storedRefreshToken = KeychainHelper.shared.retrieve(for: "refreshToken") else {
+                // If there's no refresh token, we have to fail
+                return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
+            }
+            
+            let requestBody = ["refresh_token": storedRefreshToken]
+            
+            guard let bodyData = try? JSONSerialization.data(withJSONObject: requestBody) else {
+                return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
+            }
+            
+            // Perform the request
+            return performRequest(endpoint, method: .POST, body: bodyData)
+                .handleEvents(receiveSubscription: { _ in
+                    print("Starting token refresh request to \(endpoint)")
+                }, receiveOutput: { response in
+                    print("Refresh response received: \(response)")
+                }, receiveCompletion: { completion in
+                    if case let .failure(error) = completion {
+                        print("Token refresh failed with error: \(error.localizedDescription)")
+                    }
+                })
+                .eraseToAnyPublisher()
+        }
 }
 
 
