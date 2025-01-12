@@ -8,17 +8,27 @@
 import SwiftUI
 
 struct AppView: View {
+    @State private var selection = 3
+
     
     var body: some View {
         
         VStack {
             // Bottom Tab Navigator
-            TabView {
+            TabView  {
+                
+                // Profile
+                Tab("Profile", systemImage: "person.crop.circle.fill") {
+                    NavigationStack {
+                        ProfileView()
+                    }
+                }
                 
                 // Home
                 Tab("Home", systemImage: "magnifyingglass") {
                     HomeView()
                 }
+                
                 ///.badge(2)
                 
                 // Trips
@@ -31,13 +41,13 @@ struct AppView: View {
                     MessagesView()
                 }
                 
-                
                 // Profile
-                Tab("Profile", systemImage: "person.crop.circle.fill") {
-                    NavigationStack {
-                        ProfileView()
-                    }
-                }
+                //Tab("Profile", systemImage: "person.crop.circle.fill") {
+                  //  NavigationStack {
+                    //    ProfileView()
+                    //}
+                //}
+
             }
 
             

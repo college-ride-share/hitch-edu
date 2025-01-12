@@ -26,7 +26,11 @@ class APIService {
         
         // Add default headers
         var allHeaders = headers
-        allHeaders["Content-Type"] = "application/json"
+        
+        // Check if "Content-Type" exists, and only add it if it doesn't
+        if allHeaders["Content-Type"] == nil {
+            allHeaders["Content-Type"] = "application/json"
+        }
         
         // Inject the access token if available
         if let token = KeychainHelper.shared.retrieve(for: "accessToken") {
