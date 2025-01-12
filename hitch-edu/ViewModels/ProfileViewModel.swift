@@ -22,48 +22,52 @@ class ProfileViewModel: ObservableObject {
     private let baseURL = Constants.API.baseURL + "/user"
     
     /// Uploads the selected profile picture for the current user
-    func uploadProfilePhoto() {
-        guard let user = user else {
-            self.uploadError = "User not logged in."
-            return
+    func uploadProfilePhoto() -> Future<Bool, Never> {
+        Future { promise in
+            guard let user = self.user else {
+                self.uploadError = "User not logged in."
+                promise(.success(false))
+                return
+            }
+            guard let image = self.selectedImage else {
+                self.uploadError = "No image selected."
+                promise(.success(false))
+                return
+            }
+
+            // Convert UIImage to JPEG Data
+            guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+                self.uploadError = "Failed to process image."
+                promise(.success(false))
+                return
+            }
+
+            self.isUploading = true
+            self.uploadError = nil
+            self.uploadSuccess = false
+
+            self.userService.uploadProfilePhoto(userId: user.id, imageData: imageData)
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { [weak self] completion in
+                    guard let self = self else { return }
+                    self.isUploading = false
+                    switch completion {
+                    case .failure(let error):
+                        self.uploadError = "Upload failed: \(error.localizedDescription)"
+                        promise(.success(false))
+                    case .finished:
+                        break
+                    }
+                }, receiveValue: { [weak self] response in
+                    guard let self = self else { return }
+                    self.uploadSuccess = true
+                    self.uploadError = nil
+                    SessionManager.shared.currentUser = self.user
+                    promise(.success(true))
+                })
+                .store(in: &self.cancellables)
         }
-        guard let image = selectedImage else {
-            self.uploadError = "No image selected."
-            return
-        }
-        
-        // Convert UIImage to JPEG Data
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            self.uploadError = "Failed to process image."
-            return
-        }
-        
-        isUploading = true
-        uploadError = nil
-        uploadSuccess = false
-        
-        // Call UserService to upload the photo
-        userService.uploadProfilePhoto(userId: user.id, imageData: imageData)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] completion in
-                guard let self = self else { return }
-                self.isUploading = false
-                switch completion {
-                case .failure(let error):
-                    self.uploadError = "Upload failed: \(error.localizedDescription)"
-                case .finished:
-                    break
-                }
-            }, receiveValue: { [weak self] response in
-                guard let self = self else { return }
-                self.uploadSuccess = true
-                self.uploadError = nil
-                
-                // Update the user's avatar URL in the SessionManager and locally
-                // self.user?.avatarUrl = response.avatar_url
-                SessionManager.shared.currentUser = self.user
-            })
-            .store(in: &cancellables)
     }
+
 
 }

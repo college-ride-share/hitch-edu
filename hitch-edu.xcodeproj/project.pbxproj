@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		12A499C32D33FEAC005E6445 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 12A499C22D33FEAC005E6445 /* CropViewController */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		120F99D72CEBDFBA00977C2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12A499C32D33FEAC005E6445 /* CropViewController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +130,7 @@
 			);
 			name = "hitch-edu";
 			packageProductDependencies = (
+				12A499C22D33FEAC005E6445 /* CropViewController */,
 			);
 			productName = "hitch-edu";
 			productReference = 120F99BF2CEBDFB800977C2F /* hitch-edu.app */;
@@ -208,6 +214,9 @@
 			);
 			mainGroup = 120F99B62CEBDFB800977C2F;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				12A499C12D33FEAC005E6445 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 120F99C02CEBDFB800977C2F /* Products */;
 			projectDirPath = "";
@@ -575,6 +584,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		12A499C12D33FEAC005E6445 /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		12A499C22D33FEAC005E6445 /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12A499C12D33FEAC005E6445 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 120F99B72CEBDFB800977C2F /* Project object */;
 }

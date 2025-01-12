@@ -6,91 +6,63 @@
 //
 
 import SwiftUI
+import TOCropViewController
+import Combine
 
 struct PreviewImageView: View {
-    @Binding var selectedImage: UIImage? // The image selected by the user
-    @Binding var isUploading: Bool // Tracks upload state
-    @Binding var uploadError: String? // Error message for failed uploads
-    @Binding var uploadSuccess: Bool // Tracks success state
-    @Environment(\.dismiss) var dismiss // Allows dismissing the view
-    
-    var onUpload: (UIImage) -> Void // Callback for handling the upload action
-    
+    @Binding var selectedImage: UIImage?
+    @Binding var isUploading: Bool
+    @Binding var uploadError: String?
+    @Binding var uploadSuccess: Bool
+    @Binding var showPreview: Bool
+    var onUpload: (UIImage) -> Future<Bool, Never>
+    @State private var isCropping = true
+
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 20) {
-                if let image = selectedImage {
-                    // Display the selected image
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 300, maxHeight: 300)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                        .shadow(radius: 8)
-                } else {
-                    // No image selected
-                    Text("No image selected")
-                        .foregroundColor(.gray)
-                        .font(.headline)
-                }
-                
-                Spacer()
-                
-                // Buttons for Cancel and Upload
-                HStack(spacing: 20) {
-                    Button(action: {
-                        dismiss()
-                    }) {
-                        Text("Cancel")
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.red)
-                            .cornerRadius(8)
-                    }
-                    
-                    if let image = selectedImage {
-                        Button(action: {
-                            isUploading = true
-                            uploadError = nil
-                            uploadSuccess = false
-                            
-                            // Call the upload action
-                            onUpload(image)
-                        }) {
-                            Text(isUploading ? "Uploading..." : "Upload")
-                                .foregroundColor(.white)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.blue)
-                                .cornerRadius(8)
+        ZStack {
+            ImageCropperView(
+                image: $selectedImage,
+                isCropping: $isCropping,
+                showPreview: $showPreview,
+                onCropComplete: { croppedImage in
+                    self.selectedImage = croppedImage
+                    self.isUploading = true
+                    self.onUpload(croppedImage)
+                        .sink { success in
+                            self.isUploading = false
+                            if success {
+                                self.showPreview = false
+                            }
                         }
-                        .disabled(isUploading) // Disable button while uploading
-                    }
+                        .store(in: &cancellables)
                 }
-                .padding(.horizontal)
-                
-                // Feedback messages
-                if let uploadError = uploadError {
-                    Text(uploadError)
-                        .foregroundColor(.red)
-                        .font(.footnote)
-                }
-                if uploadSuccess {
-                    Text("Image uploaded successfully!")
-                        .foregroundColor(.green)
-                        .font(.footnote)
-                }
-            }
-            .padding()
-            .navigationTitle("Preview Image")
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
+            )
+            .disabled(isUploading)
+            .interactiveDismissDisabled(isUploading)
+
+            if isUploading {
+                // Overlay spinner and disable interaction
+                Color.black.opacity(0.4)
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                    ProgressView("Uploading...")
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .foregroundColor(.white)
+                        .padding()
                 }
             }
         }
+        .alert(isPresented: Binding<Bool>(
+            get: { uploadError != nil },
+            set: { if !$0 { uploadError = nil } }
+        )) {
+            Alert(
+                title: Text("Upload Error"),
+                message: Text(uploadError ?? "An unknown error occurred."),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
+
+    @State private var cancellables = Set<AnyCancellable>()
 }

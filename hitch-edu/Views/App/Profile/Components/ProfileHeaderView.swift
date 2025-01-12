@@ -61,16 +61,15 @@ struct ProfileHeaderView: View {
         .frame(maxWidth: .infinity)
         .padding()
         .sheet(isPresented: $showPreview) {
-            // Present the preview image view
             PreviewImageView(
                 selectedImage: $selectedImage,
                 isUploading: $viewModel.isUploading,
                 uploadError: $viewModel.uploadError,
-                uploadSuccess: $viewModel.uploadSuccess
+                uploadSuccess: $viewModel.uploadSuccess,
+                showPreview: $showPreview
             ) { image in
                 viewModel.selectedImage = image
-                viewModel.uploadProfilePhoto()
-
+                return viewModel.uploadProfilePhoto()
             }
         }
         .onChange(of: selectedImage) { _, newValue in
@@ -78,6 +77,7 @@ struct ProfileHeaderView: View {
                 showPreview = true
             }
         }
+
     }
 }
 
